@@ -11,3 +11,4 @@ alert('Привет, мир!');
 console.log(typeof money);
 
 
+
