@@ -1,9 +1,13 @@
+'use strict';
+
 let money = 1000,                          
     income = 'фриланс',                        
     addExpenses = 'школа, машина, питомцы', 
     deposit = true,                          
     mission = 150000,                        
-    period = 6;
+    period = 6,
+    budgetDay,
+    modulo;
 
 
 console.log(typeof money);
