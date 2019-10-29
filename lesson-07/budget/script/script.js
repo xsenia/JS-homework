@@ -1,0 +1,31 @@
+'use strict';
+
+let btnStart =                  document.getElementById('start'),
+    salaryAmount =              document.querySelector('.salary-amount'),
+    incomeTitle =               document.querySelector('.income-title'),
+    incomeAmount =              document.querySelector('.income-amount'),
+    additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
+    additionalIncomeItem1 =     additionalIncomeItems[0],
+    additionalIncomeItem2 =     additionalIncomeItems[1],
+    arrPlus =                   document.querySelectorAll('.btn_plus'),
+    incomePlus =                arrPlus[0],
+    expensePlus =               arrPlus[1],
+    additionalIncomeTitle =     document.querySelector('.additional_income-title'),
+    additionalIncomeItem =      document.querySelectorAll('.additional_income-item'),
+    expensesTitle =             document.querySelector('.expenses-title'),
+    expensesAmount =            document.querySelector('.expenses-amount'),
+    additionalExpensesItemd =   document.querySelector('.additional_expenses-item'),
+    depositCheck =              document.querySelector('#deposit-check'),
+    depositAmount =             document.querySelector('.deposit-amount'),
+    depositPercent =            document.querySelector('.deposit-percent'),
+    targetAmount =              document.querySelector('.target-amount'),
+    periodSelect =              document.querySelector('.period-select'),
+    budgetMonthValue =          document.querySelector('.budget_month-value'),
+    budgetDayValue =            document.querySelector('.budget_day-value'),
+    expensesMonthValue =        document.querySelector('.expenses_month-value'),
+    additionalIncomeValue =     document.querySelector('.additional_income-value'),
+    additionalExpensesValue =   document.querySelector('.additional_expenses-value'),
+    incomePeriodValue =         document.querySelector('.income_period-value'),
+    targetMonthValue =          document.querySelector('.target_month-value');
+
+console.log(btnStart, salaryAmount, incomeTitle, incomeAmount, additionalIncomeItems, additionalIncomeItem1, additionalIncomeItem1, arrPlus, incomePlus, expensePlus, additionalIncomeTitle, additionalIncomeItem, expensesTitle, expensesAmount, additionalExpensesItemd, depositCheck, depositAmount, depositPercent, targetAmount, periodSelect, budgetMonthValue, budgetDayValue, expensesMonthValue, additionalIncomeValue, additionalExpensesValue,incomePeriodValue, targetMonthValue);
