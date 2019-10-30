@@ -53,13 +53,13 @@ function sortChapter() {
     let book = document.querySelectorAll('.book');
     let list1 = book[1].childNodes[3];
     let li1 = list1.childNodes;
-    list1.insertBefore(li1[7],li1[4]);
-    list1.insertBefore(li1[13],li1[5]);
-    list1.insertBefore(li1[17],li1[9]);
+    list1.insertBefore(li1[15],li1[19]);
+    list1.insertBefore(li1[5],li1[21]); 
+    list1.insertBefore(li1[12],li1[8]);
+    list1.insertBefore(li1[15],li1[9]);
 
     let list2 = book[4].childNodes[3];
     let li2 = list2.childNodes;
-    console.log(li2);
     list2.insertBefore(li2[19],li2[5]);
     list2.insertBefore(li2[6],li2[14]);
     list2.insertBefore(li2[11],li2[18]);
