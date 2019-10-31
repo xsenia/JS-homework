@@ -4,7 +4,6 @@ let btnStart =                  document.getElementById('start'),
     btnCncel =                  document.getElementById('cancel'),
     salaryAmount =              document.querySelector('.salary-amount'),
     incomeTitle =               document.querySelector('.income-title'),
-    //incomeAmount =              document.querySelector('.income-amount'),
     additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
     additionalIncomeItem1 =     additionalIncomeItems[0],
     additionalIncomeItem2 =     additionalIncomeItems[1],
@@ -59,6 +58,7 @@ let btnStart =                  document.getElementById('start'),
 
             appData.budget = +salaryAmount.value;
 
+            
             appData.getExpenses();
             appData.getIncome();
             console.log('appData.getIncome: ', appData.getIncome);
@@ -93,6 +93,10 @@ let btnStart =                  document.getElementById('start'),
             if (expensesItems.length === 3) {
                 expensesPlus.style.display = 'none';
             }
+
+            cloneExpensesItems.querySelectorAll('input').forEach((item)=>{
+                item.value = '';
+            });
         },
         addIncomeBlock: function() {        
             let cloneIncomeItems = incomeItems[0].cloneNode(true);
@@ -102,6 +106,10 @@ let btnStart =                  document.getElementById('start'),
             if (incomeItems.length === 3) {
                 incomePlus.style.display = 'none';
             }
+
+            cloneIncomeItems.querySelectorAll('input').forEach((item)=>{
+                item.value = '';
+            });
         },
         getExpenses: function() {
             expensesItems.forEach(function(item){
@@ -158,17 +166,37 @@ let btnStart =                  document.getElementById('start'),
         },
         getTargetMonth: function() {    
             return targetAmount.value/appData.budgetMonth;
-        },
-        
+        },        
         calcPeriod: function() {
             return appData.budgetMonth * appData.setPeriod();
+        },
+       inputValidation: function(){
+            let inputs = document.querySelectorAll('input');
+            inputs.forEach((item)=>{
+                let placeholder = item.getAttribute('placeholder');
+                
+                if(placeholder === 'Наименование') {
+                    console.log('Наименование: ', placeholder);
+                    item.addEventListener('input', () => {
+                        item.value = item.value.replace(/\w/g, '');
+                    });
+                } else if (placeholder === 'Сумма') {
+                    console.log('Сумма: ', placeholder);
+                    item.addEventListener('input', () => {
+                        item.value = item.value.replace(/\D/g, '');
+                    });
+                }
+            });
         }
+
     };
 
     start.addEventListener('click', () => {
         appData.start();
         appData.getResult();
     });
+
+    appData.inputValidation();
     
     expensesPlus.addEventListener('click', appData.addExpensesBlock);
     incomePlus.addEventListener('click', appData.addIncomeBlock);
