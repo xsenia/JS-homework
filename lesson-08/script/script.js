@@ -77,7 +77,8 @@ let btnStart =                  document.getElementById('start'),
             targetMonthValue.value = Math.ceil(appData.getTargetMonth());
             incomePeriodValue.value = appData.calcPeriod();
         },
-        getResult: function() {        
+        getResult: function() {
+            let dataInputs = document.querySelectorAll('.data input[type=text]');      
             dataInputs.forEach(function(item){
                 item.setAttribute('disabled', true);
             });
@@ -97,6 +98,8 @@ let btnStart =                  document.getElementById('start'),
             cloneExpensesItems.querySelectorAll('input').forEach((item)=>{
                 item.value = '';
             });
+
+            appData.inputValidation();
         },
         addIncomeBlock: function() {        
             let cloneIncomeItems = incomeItems[0].cloneNode(true);
@@ -110,6 +113,8 @@ let btnStart =                  document.getElementById('start'),
             cloneIncomeItems.querySelectorAll('input').forEach((item)=>{
                 item.value = '';
             });
+
+            appData.inputValidation();
         },
         getExpenses: function() {
             expensesItems.forEach(function(item){
