@@ -4,9 +4,9 @@ let btnStart =                  document.getElementById('start'),
     btnCncel =                  document.getElementById('cancel'),
     salaryAmount =              document.querySelector('.salary-amount'),
     incomeTitle =               document.querySelector('.income-title'),
-    additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
-    additionalIncomeItem1 =     additionalIncomeItems[0],
-    additionalIncomeItem2 =     additionalIncomeItems[1],
+    // additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
+    // additionalIncomeItem1 =     additionalIncomeItems[0],
+    // additionalIncomeItem2 =     additionalIncomeItems[1],
     arrPlus =                   document.querySelectorAll('.btn_plus'),
     incomePlus =                arrPlus[0],
     expensesPlus =              arrPlus[1],
@@ -67,6 +67,7 @@ let btnStart =                  document.getElementById('start'),
 
             appData.getExpensesMonth();
             appData.getAddExpenses();
+            appData.getAddIncome();
             appData.getBudget();
             appData.showResult();
         },

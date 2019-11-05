@@ -7,7 +7,7 @@ let btnStart =                  document.getElementById('start'),
     additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
     additionalIncomeItem1 =     additionalIncomeItems[0],
     additionalIncomeItem2 =     additionalIncomeItems[1],
-    arrPlus =                   document.querySelectorAll('.btn_plus'),
+    arrPlus =                   document.getElementsByTagName('button'),
     incomePlus =                arrPlus[0],
     expensesPlus =              arrPlus[1],
     expensesItems =             document.querySelectorAll('.expenses-items'),    
@@ -56,7 +56,7 @@ let btnStart =                  document.getElementById('start'),
         budgetMonth: 0, 
         expensesMonth: 0,
         start: function() {   
-            //debugger;  
+            //debugger;              
             
             let dataInputs = document.querySelectorAll('.data input[type=text]');      
             dataInputs.forEach(function(item){
@@ -73,6 +73,7 @@ let btnStart =                  document.getElementById('start'),
 
             this.getExpensesMonth();
             this.getAddExpenses();
+            this.getAddIncome();
             this.getBudget();
             this.showResult();
         },
