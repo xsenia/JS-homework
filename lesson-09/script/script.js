@@ -62,6 +62,10 @@ let btnStart =                  document.getElementById('start'),
             dataInputs.forEach(function(item){
                 item.setAttribute('disabled', true);
             });
+
+            incomePlus.setAttribute('disabled', true);
+            expensesPlus.setAttribute('disabled', true);
+
             btnStart.style.display = 'none';
             btnCancel.style.display = 'block';
 
@@ -90,9 +94,10 @@ let btnStart =                  document.getElementById('start'),
             resultInputs.forEach(function(item){
                 item.value = '';            
             });
-            arrPlus.forEach(function(item){
-                item.removeAttribute('disabled');
-            });
+
+            incomePlus.removeAttribute('disabled');
+            expensesPlus.removeAttribute('disabled');
+            
     
             let periodValue = periodSelect.value;
             periodValue = 0;
