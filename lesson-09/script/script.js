@@ -96,12 +96,10 @@ let btnStart =                  document.getElementById('start'),
             });
 
             incomePlus.removeAttribute('disabled');
-            expensesPlus.removeAttribute('disabled');
-            
-    
-            let periodValue = periodSelect.value;
-            periodValue = 0;
-            periodAmount.innerHTML = periodValue;
+            expensesPlus.removeAttribute('disabled');            
+               
+            periodSelect.value = 1;
+            periodAmount.innerHTML = 1;
     
             for(let i=1; i<incomeItems.length; i++) {
                 incomeItems[i].parentNode.removeChild(incomeItems[i]);
