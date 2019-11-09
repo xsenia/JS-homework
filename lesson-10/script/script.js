@@ -71,6 +71,7 @@ let btnStart =                  document.getElementById('start'),
 
         btnStart.style.display = 'none';
         btnCancel.style.display = 'block';
+        periodSelect.setAttribute('disabled', true);
 
         this.budget = +salaryAmount.value;
 
@@ -101,7 +102,8 @@ let btnStart =                  document.getElementById('start'),
         });
 
         incomePlus.removeAttribute('disabled');
-        expensesPlus.removeAttribute('disabled');            
+        expensesPlus.removeAttribute('disabled'); 
+        periodSelect.removeAttribute('disabled');           
            
         periodSelect.value = 1;
         periodAmount.innerHTML = 1;
@@ -224,11 +226,9 @@ let btnStart =                  document.getElementById('start'),
         });
     };
 
-    AppData.prototype.setPeriod = function() {
-        const _this = this;
+    AppData.prototype.setPeriod = function() {        
         let periodValue = periodSelect.value;
-        periodAmount.innerHTML = periodValue;
-        incomePeriodValue.value = periodValue*_this.budgetMonth;
+        periodAmount.innerHTML = periodValue;  
         return periodValue;
     };
 
@@ -240,6 +240,7 @@ let btnStart =                  document.getElementById('start'),
 
     AppData.prototype.getBudget = function() {
         this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth;
+        console.log('this.budgetMonth 11: ', this.budgetMonth);
         this.budgetDay = Math.ceil(this.budgetMonth/30);
     };
 
@@ -248,7 +249,7 @@ let btnStart =                  document.getElementById('start'),
     };
 
     AppData.prototype.calcPeriod = function() {
-        return this.budgetMonth * this.setPeriod();
+        return this.budgetMonth * this.setPeriod();        
     };
 
     AppData.prototype.inputValidation = function(){
@@ -257,12 +258,10 @@ let btnStart =                  document.getElementById('start'),
             let placeholder = item.getAttribute('placeholder');
             
             if(placeholder === 'Наименование') {
-                console.log('Наименование: ', placeholder);
                 item.addEventListener('input', () => {
                     item.value = item.value.replace(/\w/g, '');
                 });
             } else if (placeholder === 'Сумма') {
-                console.log('Сумма: ', placeholder);
                 item.addEventListener('input', () => {
                     item.value = item.value.replace(/\D/g, '');
                 });
