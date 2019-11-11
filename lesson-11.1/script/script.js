@@ -4,9 +4,9 @@ const btnStart =                  document.getElementById('start'),
     btnCancel =                 document.getElementById('cancel'),
     salaryAmount =              document.querySelector('.salary-amount'),
     incomeTitle =               document.querySelector('.income-title'),
-    additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
-    additionalIncomeItem1 =     additionalIncomeItems[0],
-    additionalIncomeItem2 =     additionalIncomeItems[1],
+    // additionalIncomeItems =     document.querySelectorAll('.additional_income-item'),
+    // additionalIncomeItem1 =     additionalIncomeItems[0],
+    // additionalIncomeItem2 =     additionalIncomeItems[1],
     arrPlus =                   document.getElementsByTagName('button'),
     incomePlus =                arrPlus[0],
     expensesPlus =              arrPlus[1],
@@ -164,41 +164,7 @@ const btnStart =                  document.getElementById('start'),
         });
         
         this.inputValidation();
-    };
-
-    // AppData.prototype.addExpensesBlock = function() {   
-    //     const _this = this;     
-    //     let cloneExpensesItems = expensesItems[0].cloneNode(true);
-    //     expensesItems[0].parentNode.insertBefore(cloneExpensesItems, expensesPlus);
-    //     expensesItems = document.querySelectorAll('.expenses-items');
-
-    //     if (expensesItems.length === 3) {
-    //         expensesPlus.style.display = 'none';
-    //     }
-
-    //     cloneExpensesItems.querySelectorAll('input').forEach((item)=>{
-    //         item.value = '';
-    //     });
-
-    //     _this.inputValidation();
-    // };
-
-    // AppData.prototype.addIncomeBlock = function() {  
-    //     const _this = this;      
-    //     let cloneIncomeItems = incomeItems[0].cloneNode(true);
-    //     incomeItems[0].parentNode.insertBefore(cloneIncomeItems, incomePlus);
-    //     incomeItems = document.querySelectorAll('.income-items');
-
-    //     if (incomeItems.length === 3) {
-    //         incomePlus.style.display = 'none';
-    //     }
-
-    //     cloneIncomeItems.querySelectorAll('input').forEach((item)=>{
-    //         item.value = '';
-    //     });
-
-    //     _this.inputValidation();
-    // };
+    };    
 
     AppData.prototype.getExpenses = function() {        
         expensesItems.forEach((item) => {
@@ -223,7 +189,16 @@ const btnStart =                  document.getElementById('start'),
         for (let key in this.income) {
             this.incomeMonth += +this.income[key];               
         }
-    };    
+    }; 
+
+    AppData.prototype.getAddIncome = function() {
+        additionalIncomeItem.forEach((item) => {            
+            const itemValue = item.value.trim();
+            if (itemValue !== '') {
+                this.addIncome.push(itemValue);
+            }
+        });
+    };
 
     AppData.prototype.getAddExpenses = function() {
         const addExpenses = additionalExpensesItem.value.split(',');
@@ -231,15 +206,6 @@ const btnStart =                  document.getElementById('start'),
             item = item.trim();
             if (item !== '') {
                 this.addExpenses.push(item);
-            }
-        });
-    };
-
-    AppData.prototype.getAddIncome = function() {
-        additionalIncomeItem.forEach((item) => {
-            const itemValue = item.value.trim();
-            if (itemValue !== '') {
-                this.addIncome.push(itemValue);
             }
         });
     };
@@ -302,10 +268,7 @@ const btnStart =                  document.getElementById('start'),
         start.addEventListener('click', this.start.bind(appData));
         btnCancel.addEventListener('click', this.reset.bind(appData));
 
-        this.inputValidation();
-        
-        // expensesPlus.addEventListener('click', appData.addExpensesBlock);
-        // incomePlus.addEventListener('click', appData.addIncomeBlock);
+        this.inputValidation();        
 
         expensesPlus.addEventListener('click', () => { 
             this.addBlock(expensesPlus,expensesItems,'.expenses-items')
