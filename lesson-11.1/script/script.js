@@ -1,6 +1,6 @@
 'use strict';
 
-let btnStart =                  document.getElementById('start'),
+const btnStart =                  document.getElementById('start'),
     btnCancel =                 document.getElementById('cancel'),
     salaryAmount =              document.querySelector('.salary-amount'),
     incomeTitle =               document.querySelector('.income-title'),
@@ -58,10 +58,9 @@ let btnStart =                  document.getElementById('start'),
         this.expensesMonth = 0;        
     };
 
-    AppData.prototype.start = function() {   
-        //debugger; 
+    AppData.prototype.start = function() {
         
-        let dataInputs = document.querySelectorAll('.data input[type=text]');      
+        const dataInputs = document.querySelectorAll('.data input[type=text]');      
         dataInputs.forEach(function(item){
             item.setAttribute('disabled', true);
         });
@@ -71,7 +70,6 @@ let btnStart =                  document.getElementById('start'),
 
         btnStart.style.display = 'none';
         btnCancel.style.display = 'block';
-        //periodSelect.setAttribute('disabled', true);
         depositBank.setAttribute('disabled',true);
 
         this.budget = +salaryAmount.value;
@@ -90,7 +88,7 @@ let btnStart =                  document.getElementById('start'),
    AppData.prototype.reset = function() {
         btnStart.setAttribute('disabled',true);
 
-        let dataInputs = document.querySelectorAll('.data input[type = text]'),
+        const dataInputs = document.querySelectorAll('.data input[type = text]'),
             resultInputs = document.querySelectorAll('.result input[type = text]');
 
         dataInputs.forEach(function(item){
@@ -103,7 +101,6 @@ let btnStart =                  document.getElementById('start'),
 
         incomePlus.removeAttribute('disabled');
         expensesPlus.removeAttribute('disabled');
-        //periodSelect.removeAttribute('disabled');
         depositBank.removeAttribute('disabled'); 
         
         depositPercent.style.display = 'none';
@@ -155,7 +152,7 @@ let btnStart =                  document.getElementById('start'),
     };
 
     AppData.prototype.addBlock = function(btnPlus,items,classItems) { 
-        let cloneItems = items[0].cloneNode(true);    
+        const cloneItems = items[0].cloneNode(true);    
         items[0].parentNode.insertBefore(cloneItems, btnPlus);
         items = document.querySelectorAll(classItems);
     
@@ -205,8 +202,8 @@ let btnStart =                  document.getElementById('start'),
 
     AppData.prototype.getExpenses = function() {        
         expensesItems.forEach((item) => {
-            let itemExpanses = item.querySelector('.expenses-title').value;
-            let cashExpanses = item.querySelector('.expenses-amount').value;
+            const itemExpanses = item.querySelector('.expenses-title').value;
+            const cashExpanses = item.querySelector('.expenses-amount').value;
             if(itemExpanses !== '' && cashExpanses !== '') {
                this.expenses[itemExpanses] = cashExpanses;
             }
@@ -215,8 +212,8 @@ let btnStart =                  document.getElementById('start'),
 
     AppData.prototype.getIncome = function () {        
         incomeItems.forEach((item) => {
-            let itemIncome = item.querySelector('.income-title').value;
-            let cashIncome = item.querySelector('.income-amount').value;
+            const itemIncome = item.querySelector('.income-title').value;
+            const cashIncome = item.querySelector('.income-amount').value;
             if(itemIncome !== '' && cashIncome !== '') {
                 this.income[itemIncome] = cashIncome;
                 console.log('cashIncome: ', cashIncome);
@@ -229,7 +226,7 @@ let btnStart =                  document.getElementById('start'),
     };    
 
     AppData.prototype.getAddExpenses = function() {
-        let addExpenses = additionalExpensesItem.value.split(',');
+        const addExpenses = additionalExpensesItem.value.split(',');
         addExpenses.forEach((item) => {
             item = item.trim();
             if (item !== '') {
@@ -240,7 +237,7 @@ let btnStart =                  document.getElementById('start'),
 
     AppData.prototype.getAddIncome = function() {
         additionalIncomeItem.forEach((item) => {
-            let itemValue = item.value.trim();
+            const itemValue = item.value.trim();
             if (itemValue !== '') {
                 this.addIncome.push(itemValue);
             }
@@ -248,7 +245,7 @@ let btnStart =                  document.getElementById('start'),
     };
 
     AppData.prototype.setPeriod = function() {        
-        let periodValue = periodSelect.value;
+        const periodValue = periodSelect.value;
         periodAmount.innerHTML = periodValue;  
         return periodValue;
     };
@@ -280,9 +277,9 @@ let btnStart =                  document.getElementById('start'),
     };
 
     AppData.prototype.inputValidation = function(){
-        let inputs = document.querySelectorAll('input');
+        const inputs = document.querySelectorAll('input');
         inputs.forEach((item)=>{
-            let placeholder = item.getAttribute('placeholder');
+            const placeholder = item.getAttribute('placeholder');
             
             if(placeholder === 'Наименование') {
                 item.addEventListener('input', () => {
@@ -305,7 +302,7 @@ let btnStart =                  document.getElementById('start'),
         start.addEventListener('click', this.start.bind(appData));
         btnCancel.addEventListener('click', this.reset.bind(appData));
 
-        appData.inputValidation();
+        this.inputValidation();
         
         // expensesPlus.addEventListener('click', appData.addExpensesBlock);
         // incomePlus.addEventListener('click', appData.addIncomeBlock);
@@ -333,7 +330,7 @@ depositCheck.addEventListener('change', function() {
         console.log('appData.deposit: ', appData.deposit);
 
         depositBank.addEventListener('change', function() {
-            let selectIndex = this.options[this.selectedIndex].value;
+            const selectIndex = this.options[this.selectedIndex].value;
             console.log('selectIndex: ', selectIndex);
             if (selectIndex == 'other') {
                 depositPercent.style.display = 'inline-block';
