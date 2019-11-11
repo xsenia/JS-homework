@@ -71,7 +71,7 @@ let btnStart =                  document.getElementById('start'),
 
         btnStart.style.display = 'none';
         btnCancel.style.display = 'block';
-        periodSelect.setAttribute('disabled', true);
+        //periodSelect.setAttribute('disabled', true);
         depositBank.setAttribute('disabled',true);
 
         this.budget = +salaryAmount.value;
@@ -103,7 +103,7 @@ let btnStart =                  document.getElementById('start'),
 
         incomePlus.removeAttribute('disabled');
         expensesPlus.removeAttribute('disabled');
-        periodSelect.removeAttribute('disabled');
+        //periodSelect.removeAttribute('disabled');
         depositBank.removeAttribute('disabled'); 
         
         depositPercent.style.display = 'none';
@@ -261,7 +261,6 @@ let btnStart =                  document.getElementById('start'),
 
     AppData.prototype.getBudget = function() {
         this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth + (this.moneyDeposit*this.persentDeposit)/12;
-        console.log('this.budgetMonth 11: ', this.budgetMonth);
         this.budgetDay = Math.ceil(this.budgetMonth/30);
     };
 
@@ -297,10 +296,14 @@ let btnStart =                  document.getElementById('start'),
         });
     };
 
+    AppData.prototype.calcIncome = function () {
+        incomePeriodValue.value = this.calcPeriod();
+    };
+
 
     AppData.prototype.eventListeners = function() {
-        start.addEventListener('click', appData.start.bind(appData));
-        btnCancel.addEventListener('click', appData.reset.bind(appData));
+        start.addEventListener('click', this.start.bind(appData));
+        btnCancel.addEventListener('click', this.reset.bind(appData));
 
         appData.inputValidation();
         
@@ -315,6 +318,7 @@ let btnStart =                  document.getElementById('start'),
         });
         
         periodSelect.addEventListener('change', appData.setPeriod);
+        periodSelect.addEventListener('change', this.calcIncome.bind(appData));
     };
 
 
