@@ -166,7 +166,20 @@ let expensesItems =             document.querySelectorAll('.expenses-items'),
         incomeItems =               document.querySelectorAll('.income-items');
         console.log('incomeItems: ', incomeItems.length);
         
-        this.inputValidation();
+        const inputs = cloneItems.querySelectorAll('input');
+        inputs.forEach((item)=>{
+            let placeholder = item.getAttribute('placeholder');
+            
+            if(placeholder === 'Наименование') {
+                item.addEventListener('input', () => {
+                    item.value = item.value.replace(/\w/g, '');
+                });
+            } else if (placeholder === 'Сумма') {
+                item.addEventListener('input', () => {
+                    item.value = item.value.replace(/\D/g, '');
+                });
+            }
+        });
     };  
 
     AppData.prototype.getExpInc = function () {
