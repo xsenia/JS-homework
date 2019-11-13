@@ -164,10 +164,11 @@ let expensesItems =             document.querySelectorAll('.expenses-items'),
         incomePeriodValue.value = this.calcPeriod();
     }   
 
-    addBlock = function(btnPlus,items,classItems) {
-        const cloneItems = items[0].cloneNode(true);    
+    addBlock = function(btnPlus,items,classItems) {        
+        const cloneItems = items[0].cloneNode(true);
         items[0].parentNode.insertBefore(cloneItems, btnPlus);
         items = document.querySelectorAll(classItems);
+        console.log('---items--',items);    
     
         if (items.length === 3) { 
             btnPlus.style.display = 'none';
@@ -177,9 +178,22 @@ let expensesItems =             document.querySelectorAll('.expenses-items'),
         });
 
         expensesItems =             document.querySelectorAll('.expenses-items');      
-        incomeItems =               document.querySelectorAll('.income-items');
-        
-        this.inputValidation();
+        incomeItems =               document.querySelectorAll('.income-items'); 
+
+        const inputs = cloneItems.querySelectorAll('input');
+        inputs.forEach((item)=>{
+            let placeholder = item.getAttribute('placeholder');
+            
+            if(placeholder === 'Наименование') {
+                item.addEventListener('input', () => {
+                    item.value = item.value.replace(/\w/g, '');
+                });
+            } else if (placeholder === 'Сумма') {
+                item.addEventListener('input', () => {
+                    item.value = item.value.replace(/\D/g, '');
+                });
+            }
+        });
     }  
 
     getExpInc = function () {
