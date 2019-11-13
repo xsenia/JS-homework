@@ -155,7 +155,8 @@ let expensesItems =             document.querySelectorAll('.expenses-items'),
     }
 
     showResult = function() {
-        budgetMonthValue.value = this.budgetMonth;
+        let budgetMonthValueResult = Math.floor(this.budgetMonth * 10) / 10;
+        budgetMonthValue.value = budgetMonthValueResult;
         budgetDayValue.value = this.budgetDay;
         expensesMonthValue.value = this.expensesMonth;
         additionalExpensesValue.value = this.addExpenses.join(', ');
