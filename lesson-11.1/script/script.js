@@ -300,6 +300,7 @@ depositCheck.addEventListener('change', function() {
     if(depositCheck.checked) {
         depositBank.style.display = 'inline-block';
         depositAmount.style.display = 'inline-block';
+        depositPercent.removeAttribute('disabled');
         appData.deposit = true;
 
         depositBank.addEventListener('change', function() {
