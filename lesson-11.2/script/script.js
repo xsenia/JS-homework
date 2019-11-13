@@ -155,14 +155,13 @@ let expensesItems =             document.querySelectorAll('.expenses-items'),
     }
 
     showResult = function() {
-        let budgetMonthValueResult = Math.floor(this.budgetMonth * 10) / 10;
-        budgetMonthValue.value = budgetMonthValueResult;
+        budgetMonthValue.value = Math.ceil(this.budgetMonth);
         budgetDayValue.value = this.budgetDay;
         expensesMonthValue.value = this.expensesMonth;
         additionalExpensesValue.value = this.addExpenses.join(', ');
         additionalIncomeValue.value = this.addIncome.join(', ');
         targetMonthValue.value = Math.ceil(this.getTargetMonth());
-        incomePeriodValue.value = this.calcPeriod();
+        incomePeriodValue.value = Math.ceil(this.calcPeriod());
     }   
 
     addBlock = function(btnPlus,items,classItems) {        
@@ -286,7 +285,7 @@ let expensesItems =             document.querySelectorAll('.expenses-items'),
     }
 
     calcIncome = function () {
-        incomePeriodValue.value = this.calcPeriod();
+        incomePeriodValue.value = Math.ceil(this.calcPeriod());
     }
 
 
