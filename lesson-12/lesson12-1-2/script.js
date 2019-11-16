@@ -73,7 +73,7 @@ window.addEventListener('DOMContentLoaded', function() {
         
         function showRemaining () {
             let now = new Date();
-            var distance = end - now;
+            let distance = end - now;
             console.log('now: ', now);
             console.log('end: ', end);
             console.log('distance: ', distance);
@@ -81,9 +81,9 @@ window.addEventListener('DOMContentLoaded', function() {
                 clearInterval(timer);
                 return;
             }
-            var days = Math.floor(distance / day);
+            let days = Math.floor(distance / day);
 
-            var dayName, wording;
+            let dayName, wording;
             
             switch (true) {
                 case (2 <= days &&  days <= 4):
