@@ -22,17 +22,18 @@ const getData = (url) => {
 	});	
 };
 
-const outpuPhotos = (data) => {
-	const random = Math.floor(Math.random() * data.length);
-	const obj = data[random];
-	output.innerHTML = 
-	`<h2>${obj.title}</h2>
-	<img src="${obj.url}" alt="${obj.title}">`;
+const outpuPhotos = (data) => {	
+	output.insertAdjacentHTML('beforebegin',
+	`<h4>${data.title}</h4>
+	<img src="${data.thumbnailUrl}" alt="${data.title}">`);
 };
 
 const urlPhotos = 'https://jsonplaceholder.typicode.com/photos';
 
-getData(urlPhotos)
-.then(outpuPhotos)
-.catch(error => console.log(error));
+const oneImg = getData('https://jsonplaceholder.typicode.com/photos/1'),
+	  twoImg = getData('https://jsonplaceholder.typicode.com/photos/2');
+
+Promise.race([oneImg, twoImg])
+	.then(outpuPhotos)
+	.catch(error => console.log(error));
 
