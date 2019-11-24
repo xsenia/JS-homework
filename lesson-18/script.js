@@ -23,9 +23,12 @@ const getData = (url) => {
 };
 
 const outpuPhotos = (data) => {	
-	output.insertAdjacentHTML('beforebegin',
-	`<h4>${data.title}</h4>
-	<img src="${data.thumbnailUrl}" alt="${data.title}">`);
+	data.forEach((item) => {
+		output.insertAdjacentHTML('beforebegin',
+		`<h4>${item.title}</h4>
+		<img src="${item.thumbnailUrl}" alt="${item.title}">`);
+	});
+	
 };
 
 const urlPhotos = 'https://jsonplaceholder.typicode.com/photos';
@@ -33,7 +36,7 @@ const urlPhotos = 'https://jsonplaceholder.typicode.com/photos';
 const oneImg = getData('https://jsonplaceholder.typicode.com/photos/1'),
 	  twoImg = getData('https://jsonplaceholder.typicode.com/photos/2');
 
-Promise.race([oneImg, twoImg])
+Promise.all([oneImg, twoImg])
 	.then(outpuPhotos)
 	.catch(error => console.log(error));
 
