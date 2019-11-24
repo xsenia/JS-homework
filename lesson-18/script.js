@@ -2,21 +2,24 @@
 
 const output = document.getElementById('output');
 
-const getData = (url, outputData) => {
-	const request = new XMLHttpRequest();
-	request.open('GET', url);
-	request.addEventListener('readystatechange', () => {
-		if (request.readyState !== 4) {
-			return;
-		}
-		if (request.status === 200) {
-			const response = JSON.parse(request.responseText);
-			outputData(response);
-		} else {
-			console.log(request.statusText);
-		}
-	});
-	request.send();
+const getData = (url) => {
+
+	return new Promise((resolve, reject) => {
+		const request = new XMLHttpRequest();
+		request.open('GET', url);
+		request.addEventListener('readystatechange', () => {
+			if (request.readyState !== 4) {
+				return;
+			}
+			if (request.status === 200) {
+				const response = JSON.parse(request.responseText);
+				resolve(response);
+			} else {
+				reject(request.statusText);
+			}
+		});
+		request.send();
+	});	
 };
 
 const outpuPhotos = (data) => {
@@ -29,5 +32,7 @@ const outpuPhotos = (data) => {
 
 const urlPhotos = 'https://jsonplaceholder.typicode.com/photos';
 
-getData(urlPhotos, outpuPhotos);
+getData(urlPhotos)
+.then(outpuPhotos)
+.catch(error => console.log(error));
 
