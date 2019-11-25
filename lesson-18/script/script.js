@@ -490,7 +490,10 @@ window.addEventListener('DOMContentLoaded', function() {
                     console.log(error);
                 }
             )
-                .then(resetForm(formId))
+                .then(console.log('test'))
+                .then(() => {
+                    resetForm(formId);
+                })
                 .catch((error) => {console.log(error)}
             );
 
