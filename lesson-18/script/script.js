@@ -468,74 +468,70 @@ window.addEventListener('DOMContentLoaded', function() {
         statusMessage.textContent = 'Тут будет сообщение';
         statusMessage.style.cssText = 'font-size: 30px;color:#19b5fe;';
 
-        form.addEventListener('submit', (event) => { 
+        form.addEventListener('submit', (event) => {
             event.preventDefault();
             form.appendChild(statusMessage);
             statusMessage.textContent = loadMessage;
             const formData = new FormData(form);
             let body = {}; 
-            
+            // for (let val of formData.entries()){
+            //     body[val[0]] = val[1];
+            // } или
             formData.forEach((val,key) => {
                 body[key] = val; 
             });  
             console.log('body: ', body);
 
-            //debugger;
-            postData(body, 
-                () => {
+            
+            postData(body)
+            .then(() => {
                 statusMessage.textContent = successMessage;
                 }, 
                 (error) => {                
                     statusMessage.textContent = errorMessage;
                     console.log(error);
                 }
-            )
-                .then(console.log('test'))
-                .then(() => {
-                    resetForm(formId);
-                })
-                .catch((error) => {console.log(error)}
             );
 
-            //resetForm(formId);
+            resetForm(formId);
 
         });
         
 
-        const postData = (body, outputData, errorData) => {
-
+        const postData = (body) => {
             return new Promise((resolve, reject) => {
                 const request = new XMLHttpRequest();
+
                 request.addEventListener('readystatechange', () => {  
                     if(request.readyState !== 4) {
                         return;                }
         
                     if(request.status === 200) {
-                        resolve(outputData);                   
+                        resolve();                    
                     } else {
-                        reject(errorData);                    
+                        reject(request.status);                    
                     }
                 });
-                request.open('POST', './server.php');
-                request.setRequestHeader('Content-Type', 'application/json');
-                request.send(JSON.stringify(body));
-            });
-        }; 
 
-        const resetForm = (formId) => { 
-            let form = document.getElementById(formId);                     
+                request.open('POST', './server.php');
+                request.setRequestHeader('Content-Type', 'application/json');                
+
+                request.send(JSON.stringify(body));
+
+            });
+        };
+
+        const resetForm = (formId) => {
+            let form = document.getElementById(formId);            
             let dataInputs = form.querySelectorAll('input');
             dataInputs.forEach((input) => {
                 input.value = '';                   
             });  
         };
-    
         
 
     };
 
-    
-    
     sendForm('form1');
     sendForm('form2');
     sendForm('form3');
