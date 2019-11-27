@@ -1,0 +1,26 @@
+{
+  "name": "JS-homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lesson-20/src/index.js",
+  "scripts": {
+    "webpack": "webpack",
+    "dev": "npm run webpack -- --mode development --watch",
+    "build": "npm run webpack -- --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xsenia/JS-homework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xsenia/JS-homework/issues"
+  },
+  "homepage": "https://github.com/xsenia/JS-homework#readme",
+  "devDependencies": {
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
